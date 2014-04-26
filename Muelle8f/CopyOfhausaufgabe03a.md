@@ -26,8 +26,8 @@ Der Index bzw. das Staging Area ist ein vorläufiger Commit, an dem Sie gerade a
 # Ein bisschen Markdown
 Es gibt in RStudio und im Internet **viel** zu Markdown. RStudio nutzt einen besonderen Dialekt, damit auch R-Code-Blöcke eingebaut werden können, aber der Großteil der "Syntax" ändert sich nicht. Fügen Sie hier eine ungeordnete Liste hier mit zumindest zwei Erwartungen von diesem Kurs ein. Testen Sie, dass Sie das korrekt formatiert haben, indem Sie auf "Knit HTML" klicken und schauen, dass die Liste mit Punkten erscheint.  
 
-list_hier Einigermaßen sicherer Umgang mit R, R-Studio und Git, um diese Programme eventuell für die Masterarbeit nutzen zu können
-Ebenfalls im Hinblick auf die MA-Arbeit: Ein grundlegendes Wissen über Statistik und die wichtigsten statistuschen Tests für Linguisten 
+- Einigermaßen sicherer Umgang mit R, R-Studio und Git, um diese Programme eventuell für die Masterarbeit nutzen zu können
+- Ebenfalls im Hinblick auf die MA-Arbeit: Ein grundlegendes Wissen über Statistik und die wichtigsten statistischen Tests für Linguisten 
 
 ## R-Code-Blöcke
 
@@ -85,7 +85,7 @@ R-Code können Sie auch direkt in den Fließtext bauen: Die Quadratwurzel von 13
 
 Ergänzen Sie folgende Zeile mit Inline R-code, sodass der Satz korrekt und vollständig ist:
 
-Die Summe von 98545455678767 und 567886538546532323 ist: code_hier .
+Die Summe von 98545455678767 und 567886538546532323 ist: `r sum(98545455678767, 567886538546532323)`.
 
 # Normaler R-Code 
 Es ist natürlich auch möglich R-Code zu schreiben, ohne ihn in (R)Markdown einzubetten. Dazu geht die Aufgabe weiter mit `hausaufgabe03b.R` weiter. Sie sollten die Datei auch in Ihren Ordner kopieren und einen Commit machen, bevor Sie die Kopie weiter anpassen.
