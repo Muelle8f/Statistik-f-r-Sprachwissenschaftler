@@ -26,54 +26,66 @@ Der Index bzw. das Staging Area ist ein vorläufiger Commit, an dem Sie gerade a
 # Ein bisschen Markdown
 Es gibt in RStudio und im Internet **viel** zu Markdown. RStudio nutzt einen besonderen Dialekt, damit auch R-Code-Blöcke eingebaut werden können, aber der Großteil der "Syntax" ändert sich nicht. Fügen Sie hier eine ungeordnete Liste hier mit zumindest zwei Erwartungen von diesem Kurs ein. Testen Sie, dass Sie das korrekt formatiert haben, indem Sie auf "Knit HTML" klicken und schauen, dass die Liste mit Punkten erscheint.  
 
-- Einen einigermaßen sicheren Umgang mit R, R-Studio und Git (sowie GitHub) erlernen, um diese Programme eventuell für die Masterarbeit bzw. weitere Projekte nutzen zu können.
-- Ebenfalls im Hinblick auf die MA-Arbeit: Ein grundlegendes Wissen über Statistik und die für Linguisten wichtigsten statistischen Tests erlernen.
+list_hier Einigermaßen sicherer Umgang mit R, R-Studio und Git, um diese Programme eventuell für die Masterarbeit nutzen zu können
+Ebenfalls im Hinblick auf die MA-Arbeit: Ein grundlegendes Wissen über Statistik und die wichtigsten statistuschen Tests für Linguisten 
 
 ## R-Code-Blöcke
-```{r}
-# Dieser Block wird als R-Code statt Markdown interpretiert.
-# Zeilen in R, die mit # anfangen, werden von R ignoriert.
-# Solche Zeilen nennt man "Comments" -- "Kommentar"
 
-x <- c(1,2,3)
+```r
+# Dieser Block wird als R-Code statt Markdown interpretiert.  Zeilen in R,
+# die mit # anfangen, werden von R ignoriert.  Solche Zeilen nennt man
+# 'Comments' -- 'Kommentar'
+
+x <- c(1, 2, 3)
 print(x)
 ```
+
+```
+## [1] 1 2 3
+```
+
 
 Per Default wird der R-Code schön dargestellt und durchgeführt, sodass sowohl der Code als auch sein Output in der HTML-Datei erscheint. Wir können das ändern mit Blockoptionen. Das ist zum Beispiel nutzlich, wenn wir Grafiken machen und die Größe der Figuren bestimmen möchten. (Wenn Sie `ggplot2` noch nicht installiert haben, müssen Sie das noch machen!)
 
 
-```{r fig.height=5, fig.width=5}
+
+```r
 library(ggplot2)
 # example from http://www.statmethods.net/advgraphs/ggplot2.html
 
 # create factors with value labels
-mtcars$gear <- factor(mtcars$gear,levels=c(3,4,5),
-   labels=c("3gears","4gears","5gears"))
-mtcars$am <- factor(mtcars$am,levels=c(0,1),
-   labels=c("Automatic","Manual"))
-mtcars$cyl <- factor(mtcars$cyl,levels=c(4,6,8),
-   labels=c("4cyl","6cyl","8cyl"))
+mtcars$gear <- factor(mtcars$gear, levels = c(3, 4, 5), labels = c("3gears", 
+    "4gears", "5gears"))
+mtcars$am <- factor(mtcars$am, levels = c(0, 1), labels = c("Automatic", "Manual"))
+mtcars$cyl <- factor(mtcars$cyl, levels = c(4, 6, 8), labels = c("4cyl", "6cyl", 
+    "8cyl"))
 
-# Kernel density plots for mpg
-# grouped by number of gears (indicated by color)
-carplot <- qplot(mpg, data=mtcars, geom="density", fill=gear, alpha=I(.5),
-   main="Distribution of Gas Milage", xlab="Miles Per Gallon",
-   ylab="Density")
+# Kernel density plots for mpg grouped by number of gears (indicated by
+# color)
+carplot <- qplot(mpg, data = mtcars, geom = "density", fill = gear, alpha = I(0.5), 
+    main = "Distribution of Gas Milage", xlab = "Miles Per Gallon", ylab = "Density")
 print(carplot)
 ```
+
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
+
 
 Das ist übrigens ein sehr gutes Beispiel, wie die Darstellung von Daten bzw. Statistik unseren Eindruck und unsere Wahrnehmung davon beeinflussen kann. Wenn wir die Grafik breiter aber weniger hoch, sieht das Bild anders aus!
 
-```{r fig.height=3, fig.width=10}
+
+```r
 print(carplot)
 ```
 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
+
+
 ## Inline R-Code
-R-Code können Sie auch direkt in den Fließtext bauen: Die Quadratwurzel von 13 ist `r sqrt(13)`. Passen Sie dabei auf, dass die verschiedenen Arten von Aposostrophen, Anführungszeichnen und Akzenten in den meisten Programmiersprachen bedeutsam sind!
+R-Code können Sie auch direkt in den Fließtext bauen: Die Quadratwurzel von 13 ist 3.6056. Passen Sie dabei auf, dass die verschiedenen Arten von Aposostrophen, Anführungszeichnen und Akzenten in den meisten Programmiersprachen bedeutsam sind!
 
 Ergänzen Sie folgende Zeile mit Inline R-code, sodass der Satz korrekt und vollständig ist:
 
-Die Summe von 98545455678767 und 567886538546532323 ist: `r sum(98545455678767, 567886538546532323)`. 
+Die Summe von 98545455678767 und 567886538546532323 ist: code_hier .
 
 # Normaler R-Code 
 Es ist natürlich auch möglich R-Code zu schreiben, ohne ihn in (R)Markdown einzubetten. Dazu geht die Aufgabe weiter mit `hausaufgabe03b.R` weiter. Sie sollten die Datei auch in Ihren Ordner kopieren und einen Commit machen, bevor Sie die Kopie weiter anpassen.
