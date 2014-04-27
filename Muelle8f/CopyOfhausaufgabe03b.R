@@ -7,7 +7,7 @@
 # bevor Sie die Kopie weiter anpassen! Vergessen Sie dabei nicht, Namen, Datum
 # und ggf. Lizenz zu ändern. Bei R-Code-Dateien wird der Text als R-Code
 # verstanden, weshalb man Fließtext auskommentieren (mit #-Präfix inaktiv 
-# stellen) muss. Das ist zwar Umständlicher für Beschreibungstext, aber schöner 
+# stellen) muss. Das ist zwar umständlicher für Beschreibungstext, aber schöner 
 # für den Umgang mit viel Code.
 
 # In R können wir sehr den arithmetischen Mittelwert sehr leicht mit mean()
@@ -26,7 +26,7 @@ print(mean(my.data))
 # gibt in der Leiste mit "Source" auch einen kleinen Knopf, der so aussieht wie 
 # einen kleinen Notizblock (Notebook) aus. Ein weiteres Fenster öffnet sich mit 
 # schön formatiertem Output. Das ist schön, aber trotzdem sollten Sie wissen,
-# wie R-Output in seiner Bassiform aussieht UND wie man wirklich schönen Output
+# wie R-Output in seiner Basisform aussieht UND wie man wirklich schönen Output
 # mit Fließtext durch RMarkdown macht.
 
 # In R sind fast alle Daten Vektoren, sogar Einzelzahlen -- Einzelelemente sind
@@ -110,20 +110,32 @@ print(tabelle.sorted)
 
 # Nehmen Sie das erste Element aus dem obigen Ergebnis, um den Modalwert zu
 # bekommen:
-# modus <- code_hier
+modus <- (tabelle.sorted[1])
+print(modus)
 
 # Verständisfrage: gibt es immer nur *einen* Modalwert? 
 # Wenn nicht, ist der Code oben korrekt? Warum?
 # Schreiben Sie Ihre Antwort als Comment hier.
 
-# antwort_hier
+# Antwort:
+# Der Modalwert (häufigster Wert) bezieht sich auf die Kategorie, die am meisten besetzt ist. 
+# Als Beispiel in der Vorlesung bzw. im Seminar hatten wir zwei Kategorien benannt: "Männer" und "Frauen".
+# Da es im Kurs mehr Frauen als Männer gibt, ist die Kategorie "Frauen" diejenige Kategorie, die bei der Verteilung am meisten besetzt ist,
+# also die Merkmalsausprägung mit der größten Häufigkeit und damit der Modalwert. 
+# Ich denke, dass es nicht immer nur *einen* Modalwert gibt.
+# Dies könnte der Fall sein, wenn es mehr als eine Kategorie gibt und zwei oder mehr Kategorien bei der Verteilung am maximal häufigsten besetzt sind.
+# Es würde also mehrere häufigste Werte und damit mehrere Modalwerte geben.
+# Wenn man an das obige Beispiel anknüpft, könnte man noch die Kategorie "Kinder" hinzufügen.
+# Gibt es gleich viele "Frauen" und "Kinder" (mehr als "Männer"), hat man zwei Modalwerte: "Frauen" und "Kinder"  
+# Der Code oben ist jedoch korrekt, da es in diesem Beispiel nur zwei Kategorien gibt,
+# wobei "w" häufiger besetzt ist als "m" und "w" damit den Modalwert darstellt. 
 
-# Als Abscheid ein Beispiel mit der Darstellung Frequenzdaten mit Säulendiagramm
+# Als Abschied ein Beispiel mit der Darstellung Frequenzdaten mit Säulendiagramm
 # bzw. Histogramm
 
-# library(ggplot2)
-# my.histogram <- qplot(more.data,geom="histogram")
-# print(my.histogram)
+library(ggplot2)
+my.histogram <- qplot(more.data,geom="histogram")
+print(my.histogram)
 
 # Sie sind jetzt fertig -- das waren ganz viele Kleinigkeiten, aber
 # Kleinigkeiten, die wir immer wieder nutzen werden. Machen Sie einen Commit und
