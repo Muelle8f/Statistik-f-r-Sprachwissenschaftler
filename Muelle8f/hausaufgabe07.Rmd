@@ -1,3 +1,4 @@
+
 % Hausaufgabe 07
 % Janina Müller <Muelle8f@students.uni-marburg.de>
 % 08.05.2014
@@ -84,15 +85,23 @@ for(s in c(3,4,5) ){
 
 Aber wir hoffen alle, dass wir doch eine gute Note bekommen. Fügen Sie einen Code-Block hier ein, der das gleiche aber mit "ausgezeichneten" Noten (=1 bzw. >= 13) macht. (Bei evtl. Copy-Paste nicht vergessen, "fallen...durch" durch etwas Passendes zu ersetzen!)  
 
-code_block_hier
-
+```{r}
+for(s in c(3,4,5) ){
+  ausgezeichnet <- pnorm(13,mean=mu,sd=s, lower.tail = FALSE)
+  output <- paste("Bei einer Standabweichung von",s, "bestehen",ausgezeichnet*100,"% mit einer ausgezeichneten Note.")
+  print(output)
+}
+````
 Wie steht die Anzahl guter Noten in Beziehung zur Anzahl schlechter Noten? 
 
-antwort_hier
+Es gibt eine geringere Prozentzahl (also Anzahl) ausgezeichneter Noten im Vergleich zu schlechten Noten. 
 
 Warum?
 
-antwort_hier
+Als ausgezeichnete Noten wurden alle Noten >= 13 Punkte definiert, also 13, 14 und 15. 
+Als schlechte Noten wurden hingegen alle Noten <5 Punkte definiert, also 4, 3, 2, 1. 
+Der definierte Bereich schlechter Noten ist damit größer als der definierte Bereich ausgezeichneter Noten. In den größeren Bereich fallen mehr Prozent, wodurch der Bereich schlechter Noten eine höhere Prozentzahl aufweist. 
+
 
 ## Kurtosis und Schiefe
 Kurtosis (im Deutschen auch *Wölbung*) ist ein Maß dafür, wie spitz eine Verteilung ist. Die Normalverteilung wird nie zu extrem spitz -- der Gipfel bleibt immer schön rund, obwohl er manchmal eng wird. Andere Verteilungen (z.B. die Laplace-Verteilung ) haben Gipfel, die nicht rund sind.   
@@ -101,7 +110,7 @@ Schiefe (*skewness*) beschriebt die (A)Symmetrie einer Verteilung. Eine Verteilu
 
 Die Verteilung von Noten ist oft schief mit mehr guten Noten. Ist die Verteilung rechts- oder linksschief?
 
-antwort_hier
+antwort_hier rechtsschief, da sich der Gipfel auf der linken Seite befindet. 
 
 Vielleicht hilft folgende Grafik mit der Visualisierung:
 
