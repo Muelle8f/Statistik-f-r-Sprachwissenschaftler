@@ -110,7 +110,7 @@ Schiefe (*skewness*) beschriebt die (A)Symmetrie einer Verteilung. Eine Verteilu
 
 Die Verteilung von Noten ist oft schief mit mehr guten Noten. Ist die Verteilung rechts- oder linksschief?
 
-Die Verteilung ist rechtsschief, da sich der Gipfel auf der linken Seite befindet. 
+Die Verteilung ist linksschief, da sich der Gipfel auf der rechten Seite befindet. 
 
 Vielleicht hilft folgende Grafik mit der Visualisierung:
 
@@ -119,7 +119,7 @@ suppressPackageStartupMessages(library(sn))
 qplot(x=1:15,y=dsn(1:15, xi=c(12), omega=1, alpha=-3, log=FALSE),geom="line",xlab="Notenpunkte",ylab="P")
 ```
 
-## Von Perzentilen auf Häufikgeiten
+## Von Perzentilen auf Häufigkeiten
 Wir können die Perzentile in (absolute) Häufigkeiten übersetzen. Nehmen wir an, dass es 50 Studenten in einem Kurs gibt und dass die Noten wie oben normal verteilt sind. Dann können wir unserem Data.Frame eine weitere Spalte hinzufügen:
 ```{r}
 n <- 50
@@ -129,7 +129,10 @@ noten.dist
 
 Jetzt können wir die absoluten Häufigkeiten auch plotten:
 
-code_block_hier 
+```{r}
+library(ggplot2)
+ggplot(data=noten.dist, aes (x = Notenpunkte, y = Anzahl, color = Standardabweichung)) + geom_line() + scale_x_continuous(limits=c(0, 16))
+```
 
 Beantworten Sie ein paar Fragen über die Verteilung, indem Sie den passenden R-Code einsetzen:
 
@@ -180,7 +183,7 @@ z7 <- sqrt(7) * ((10-8)/3)
 print(z7)
 ````
 
-Das ist ein **insignifikanter** Unterschied, da z < 1,88 (kritischer Wert des zweiseitigen Tests). 
+Das ist ein **insignifikanter** Unterschied, da z = 1,764 < 1,88 (kritischer Wert des zweiseitigen Tests). 
 
 In einer Vorlesung vom selben Dozenten mit 50 Teilnehmern beträgt der Durchschnittswert wieder 10. (Es scheint, dass der Dozent 10 besonders toll findet.) Berechnen Sie den $z$-Test:
 
@@ -189,7 +192,7 @@ z50 <- sqrt(50) * ((10-8)/3)
 print(z50)
 ````
 
-Das ist ein **signifikanter** Unterschied, da z > 1,88.  
+Das ist ein **signifikanter** Unterschied, da z = 4.714 > 1,88.  
 
 Ist die Benotung vom Dozenten weniger als ideal? 
 
@@ -205,7 +208,7 @@ z20 <- sqrt(20) * ((7-8)/3)
 print(z20)
 ```
 
-Das ist ein **insignifikanter** Unterschied, da |1,49| < 1,55 (kritischer Wert des zweiseitigen Tests.    
+Das ist ein **insignifikanter** Unterschied, da |1,49| < 1,55 (kritischer Wert des einseitigen Tests).    
 
 Später ergibt sich, dass es eigentlich 25 Studenten im Kurs gab. (Der Dozent hat "einen Tippfehler" gemacht, als er seine Teilnehmerzahl per Mail an die Verwaltung geschickt hat.) Der Durchschnittswert bleibt -- behauptet der Dozent -- immer noch bei 7. Er behauptet weiterhin, dass das wunderbar nah am Erwartungswert (8) ist, und dass man ihn in Ruhe lassen sollte. Ist er zu streng?
 
