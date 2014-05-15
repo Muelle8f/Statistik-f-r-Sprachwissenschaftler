@@ -131,9 +131,8 @@ if (shapiro2$p.value > 0.05){print("Shapiro's test insignifikant, die Daten sind
 
 rt$logRT <- log(rt$RT)
 print(summary(rt$logRT))
-#logrt.plot <- qplot(x=logRT,color=subj,fill=subj,data=rt$logRT, geom="density",alpha=I(0.3))
-
-# print(logrt.plot)
+# logrt.plot <- log(rt$logRT) ??? oder Graphik erstellen??? 
+# print(logrt.plot) ???
 
 # Sieht die Verteilung besser aus? Sind die Varianzen "homogener" geworden? 
 # Berechnen Sie den F-Test und den Levene-Test für die logaritmisch skalierten 
@@ -144,7 +143,7 @@ print(summary(rt$logRT))
 f.test2 <- var.test(rt$logRT ~ rt$subj)
 print(f.test2)
 
-# if-Block fehlt noch...
+if (f.test2$p.value > 0.05){print("F-Test insignifikant, die Varianzen sind nicht homogen.")}else{print("F-Test signifikant, die Varianzen sind homogen.")}
 
 # Levene-Test für die loritmisch skalierten Daten:
 lev.test2 <- levene.test(rt$logRT ~ rt$subj)
@@ -152,9 +151,11 @@ print(lev.test2)
 
 # alternativ (R gibt den Hinweis, dass levene.test nicht mehr der aktuellste Code ist):
 lev.test.alternativ2 <- leveneTest(rt$logRT ~ rt$subj)
-print(lev.test.alternativ) 
+print(lev.test.alternativ2) 
 
-# if-Block fehlt noch...
+# if (lev.test2$p.value > 0.05){print("Levene-Test insignifikant, die Varianzen sind homogen.")}else{print("Levene-Test signifikant, die Varianzen sind nicht homogen.")}
+# Mit der alternativen Berechnung:
+# if (lev.test.alternativ2$p.value > 0.05){print("Levene-Test insignifikant, die Varianzen sind homogen.")}else{print("Levene-Test signifikant, die Varianzen sind nicht homogen.")}
 
 # Sind die Daten "normaler" gewordern? Berechnen Sie den Shapiro-Test für beide 
 # Gruppen. Nach jeder Gruppe sollten Sie auch programmatisch (=durch if-Blöcke)
