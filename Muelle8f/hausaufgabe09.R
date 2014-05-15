@@ -82,6 +82,10 @@ print(f.test.alternativ)
 # Sind die Varianzen homogen? Vergessen Sie nicht, dass die Nullhypothese beim
 # F-Test "Varianzen Ungleich" ist.
 
+# Antwort: Wir gehen von der Nullhypothese aus "Varianzen sind ungleich".
+# Die Nullhypothese trifft nicht zu, da p = 0,04 also p < 0,05. 
+# Das bedeutet, die Varianzen sind homogen. 
+
 # Berechenen Sie den Levene Test:
 lev.test <- levene.test(rt$RT ~ rt$subj)
 print(lev.test)
@@ -93,15 +97,21 @@ print(lev.test.alternativ)
 # Sind die Varianzen homogen? Vergessen Sie nicht, dass die Nullhypothese beim
 # Levene Test "Varianzen Gleich" ist.
 
+# Antwort: Hier kann die Nullhypothese "Varianzen gleich" beibehalten werden. 
+# Denn unser p-Wert ist 0,37 und damit ist p > 0,05 und weicht nicht signifikant von der Nullhypothese ab.
+
 # Für heterogene Varianzen haben wir eine Variante des  t-Tests gesehen, die
 # eine Korrektur der Freiheitsgerade macht. Bei homogener Varianz sollten beide
-# Variante ähnliche bzw. (fast) gleiche Ergebnisse liefern. Ist das hier der
+# Varianten ähnliche bzw. (fast) gleiche Ergebnisse liefern. Ist das hier der
 # Fall?
 two.sample <- t.test(subj1,subj2, var.equal=TRUE)
 welch <- t.test(subj1,subj2)
 #
 print(two.sample)
 print(welch)
+
+# Antwort: Ja, beide Tests liefern ähliche Ergebnisse.
+# Dies bestätigt unsere Ergebnisse von oben, die besagen, dass die Varianzen homogen sind.
 
 # Das Ergebnis der verschiedenen Test-Funktionen in R ist übrigens eine Liste.
 # Wir können das ausnutzen, um zu schauen, ob es einen Unterschied zwischen den
@@ -131,10 +141,12 @@ if (shapiro2$p.value > 0.05){print("Shapiro's test insignifikant, die Daten sind
 
 rt$logRT <- log(rt$RT)
 print(summary(rt$logRT))
-# logrt.plot <- log(rt$logRT) ??? oder Graphik erstellen??? 
-# print(logrt.plot) ???
+logrt.plot <- ggplot(data=rt) + geom_density(aes(x=rt$logRT,color=subj,fill=subj),alpha=0.6)
+print(logrt.plot)
 
-# Sieht die Verteilung besser aus? Sind die Varianzen "homogener" geworden? 
+# Sieht die Verteilung besser aus? Sind die Varianzen "homogener" geworden?
+# Antwort: Nein, ich finde nicht, dass die Verteilung besser aussieht. 
+
 # Berechnen Sie den F-Test und den Levene-Test für die logaritmisch skalierten 
 # Daten. Nach jedem Test sollten Sie auch programmatisch (=durch if-Blöcke)
 # ausdrücken, ob die Varianzen homogen sind.
