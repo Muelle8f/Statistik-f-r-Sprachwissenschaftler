@@ -165,9 +165,9 @@ print(lev.test2)
 lev.test.alternativ2 <- leveneTest(rt$logRT ~ rt$subj)
 print(lev.test.alternativ2) 
 
-# if (lev.test2$p.value > 0.05){print("Levene-Test insignifikant, die Varianzen sind homogen.")}else{print("Levene-Test signifikant, die Varianzen sind nicht homogen.")}
+if (lev.test2$`Pr(>F)` > 0.05){print("Levene-Test insignifikant, die Varianzen sind homogen.")}else{print("Levene-Test signifikant, die Varianzen sind nicht homogen.")}
 # Mit der alternativen Berechnung:
-# if (lev.test.alternativ2$p.value > 0.05){print("Levene-Test insignifikant, die Varianzen sind homogen.")}else{print("Levene-Test signifikant, die Varianzen sind nicht homogen.")}
+if (lev.test.alternativ2$`Pr(>F)` > 0.05){print("Levene-Test insignifikant, die Varianzen sind homogen.")}else{print("Levene-Test signifikant, die Varianzen sind nicht homogen.")}
 
 # Sind die Daten "normaler" gewordern? Berechnen Sie den Shapiro-Test für beide 
 # Gruppen. Nach jeder Gruppe sollten Sie auch programmatisch (=durch if-Blöcke)
@@ -186,6 +186,10 @@ print(shapiro.log2)
 #
 if (shapiro.log2$p.value > 0.05){print("Shapiro's test insignifikant, die Daten sind normal verteilt.")}else{print("Shapiro's test signifikant, die Daten sind nicht normal verteilt.")}
 
+# Antwort ("Sind die Daten normaler geworden?"): Nein, sind sie nicht. 
+# Denn jetzt sind die Daten für beide Gruppen nicht normal verteilt. 
+# Bevor der Logaritmus genommen wurde, waren die Daten für Gruppe 1 normal verteilt und lediglich die von Gruppe 2 nicht.
+
 # Hat die logarithmische Transformation insgesamt geholfen? Berechnen Sie zum
 # Schluss den (Welch) t-Test für die logarithmischen Daten. Bekommen Sie das
 # gleiche Ergebnisse wie bei den Ausgangsdaten?
@@ -195,3 +199,6 @@ subj2.log <- rt[rt$subj == "2", "logRT"]
 
 welch.log <- t.test(subj1.log,subj2.log)
 print(welch.log)
+
+# Antwort: Der Welch-Test liefert die gleichen Ergebnisse wie zuvor.
+# Ich würde sagen, dass die logarithmische Transformation insgesamt nicht geholfen hat. 
