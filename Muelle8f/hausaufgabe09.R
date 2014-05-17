@@ -80,11 +80,11 @@ f.test.alternativ <- var.test(rt$RT ~ rt$subj)
 print(f.test.alternativ) 
 
 # Sind die Varianzen homogen? Vergessen Sie nicht, dass die Nullhypothese beim
-# F-Test "Varianzen Ungleich" ist.
+# F-Test "Varianzen gleich" ist.
 
-# Antwort: Wir gehen von der Nullhypothese aus "Varianzen sind ungleich".
+# Antwort: Wir gehen von der Nullhypothese "Varianzen sind gleich" aus.
 # Die Nullhypothese trifft nicht zu, da p = 0,04 also p < 0,05. 
-# Das bedeutet, die Varianzen sind homogen. 
+# Das bedeutet, die Varianzen sind nicht homogen. 
 
 # Berechenen Sie den Levene Test:
 lev.test <- levene.test(rt$RT ~ rt$subj)
@@ -111,7 +111,7 @@ print(two.sample)
 print(welch)
 
 # Antwort: Ja, beide Tests liefern ähliche Ergebnisse.
-# Dies bestätigt unsere Ergebnisse von oben, die besagen, dass die Varianzen homogen sind.
+# Dies bestätigt unser Ergebnis des Levene-Test, welches besagt, dass die Varianzen homogen sind.
 
 # Das Ergebnis der verschiedenen Test-Funktionen in R ist übrigens eine Liste.
 # Wir können das ausnutzen, um zu schauen, ob es einen Unterschied zwischen den
@@ -155,7 +155,7 @@ print(logrt.plot)
 f.test2 <- var.test(rt$logRT ~ rt$subj)
 print(f.test2)
 
-if (f.test2$p.value > 0.05){print("F-Test insignifikant, die Varianzen sind nicht homogen.")}else{print("F-Test signifikant, die Varianzen sind homogen.")}
+if (f.test2$p.value > 0.05){print("F-Test insignifikant, die Varianzen sind homogen.")}else{print("F-Test signifikant, die Varianzen sind nicht homogen.")}
 
 # Levene-Test für die loritmisch skalierten Daten:
 lev.test2 <- levene.test(rt$logRT ~ rt$subj)
@@ -188,7 +188,7 @@ if (shapiro.log2$p.value > 0.05){print("Shapiro's test insignifikant, die Daten 
 
 # Antwort ("Sind die Daten normaler geworden?"): Nein, sind sie nicht. 
 # Denn jetzt sind die Daten für beide Gruppen nicht normal verteilt. 
-# Bevor der Logaritmus genommen wurde, waren die Daten für Gruppe 1 normal verteilt und lediglich die von Gruppe 2 nicht.
+# Bevor der Logarithmus genommen wurde, waren die Daten für Gruppe 1 normal verteilt und lediglich die von Gruppe 2 nicht.
 
 # Hat die logarithmische Transformation insgesamt geholfen? Berechnen Sie zum
 # Schluss den (Welch) t-Test für die logarithmischen Daten. Bekommen Sie das
