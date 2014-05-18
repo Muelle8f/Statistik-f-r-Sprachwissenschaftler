@@ -141,7 +141,7 @@ if (shapiro2$p.value > 0.05){print("Shapiro's test insignifikant, die Daten sind
 
 rt$logRT <- log(rt$RT)
 print(summary(rt$logRT))
-logrt.plot <- ggplot(data=rt) + geom_density(aes(x=rt$logRT,color=subj,fill=subj),alpha=0.6)
+logrt.plot <- qplot(x=rt$logRT,color=subj,fill=subj,data=rt, geom="density",alpha=I(0.3))
 print(logrt.plot)
 
 # Sieht die Verteilung besser aus? Sind die Varianzen "homogener" geworden?
