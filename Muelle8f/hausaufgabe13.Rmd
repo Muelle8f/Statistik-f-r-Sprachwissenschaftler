@@ -61,7 +61,7 @@ ggplot(data=priming) + geom_boxplot(aes(x=cond,y=RT,color=cond,fill=cond),alpha=
 ```
 
 ## Darstellung der Daten mit Berücksichtigung der Wiederholungen
-Wenn wir naiv die Wiederholungen betrachten, können wir uns entweder auf den zufälligen Faktor **Subject** oder den zufälligen Faktor **Item** dadurch konzentrien, dass wir die Mittelwerte berechnen. 
+Wenn wir naiv die Wiederholungen betrachten, können wir uns entweder auf den zufälligen Faktor **Subject** oder den zufälligen Faktor **Item** dadurch konzentriren, dass wir die Mittelwerte berechnen. 
 
 ### By Subject
 Bei "Subject" berechnen wir die Mittelwerte aller Trials innerhalb einer Versuchsperson, d.h. wir nehmen den versuchpersonenweise Mittelwert über Items hinweg. Dafür können wir `aggregate()` nutzen.
@@ -89,6 +89,7 @@ print(xtable(priming.by.subject.wide2),type="html",include.rownames=FALSE)
 ```
 
 Welches Format macht am meisten Sinn?
+
 Antwort: Ich kann nicht sagen welches Format am meisten Sinn macht. Allerdings finde ich die erste Darstellungsart (Versuchspersonen als Zeilen und Bedingungen als Spalten) am übersichtlichsten. Aus diesem Grund würde ich mich wahrscheinlich für diese Art der Darstellung entscheiden.   
 
 Natürlich müssen wir auch die Daten grafisch darstellen:
@@ -100,6 +101,7 @@ ggplot(data=priming.by.subject) + geom_boxplot(aes(x=cond,y=RT,color=cond,fill=c
 ```
 
 Sind alle Plots gleich gut?
+
 Antwort: Dies hängt sicherlich davon ab, was genau man sich anhand der Plots anschauen oder was man darstellen möchte. Möchte ich beispielsweise eine visuelle Analyse der Normalverteilung und Varianz durchführen, eignet sich hierfür wohl die Dichteverteilung am besten. 
 
 ### By Item
@@ -123,6 +125,7 @@ ggplot(data = priming.by.item) + geom_density(aes(x = RT, color = cond, fill = c
 ````
 
 Sehen die Daten by Subject und by Item gleich aus? Wie sehen sie im Vergleich zu den Single-Trial-Daten aus?
+
 Antwort: Nein, die Daten by Subject und by Item sehen nicht gleich aus. Im Vergleich zu den Single-Trial-Daten sehen sie weniger normal verteilt und weniger homogen aus. 
 
 # Subject- und Item-Analysen
