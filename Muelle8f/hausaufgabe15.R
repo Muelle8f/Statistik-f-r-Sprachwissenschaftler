@@ -64,6 +64,9 @@ print(summary(m2))
 
 # Sehen die Plots anders aus? Hat sich der R^2 Wert geändert? Die t-Werte? Die Koeffizienten? 
 
+# Überlegungen: Die Plots scheinen gleich zu sein; R^2 Wert ist gleich; 
+# t-Werte sind gleich; Koeffizienten unterscheiden sich.        
+
 # Was passiert, wenn wir das Modell umdrehen? Also, height.cm als eine Funktion
 # von weight.kg darstellen? Plotten und berechnen Sie das neue Modell, wie ich
 # es oben für die zwei bisherigen Modelle gemacht habe.
@@ -73,15 +76,22 @@ m3 <- lm(height.cm ~ weight.kg, data=women.metric)
 print(summary(m3))
 
 # Hat sich der R^2 Wert geändert? Die t-Werte? Die Koeffizienten? Was ist die
-# Beziehung zwischen diesem Modell und m2?
+# Beziehung zwischen diesem Modell und m2? 
+
+# Überlegungen: R^2 hat sich nicht geändert; t-Werte haben sich geändert; 
+# Koeffizienten haben sich geändert. Beziehung zwischen diesem Modell und m2:
+# R^2-Wert ist gleich: Varianz wird erklärt, egal in welche Richtung wir Modell betrachten?
 
 # Wie sieht es aus mit den Daten zum Kursteilnehmern? Plotten Sie und berechnen
 # Sie ein Modell für das Gewicht der Teilnehmer als Funktion von Körpergröße.
 
 kurs <- body
 ggplot(kurs,aes(x=height,y=weight)) +  geom_point() + geom_smooth(method="lm")
-m4 <- lm(weight ~ height, data=women.metric)
+m4 <- lm(weight ~ height, data=kurs)
 print(summary(m4))
 
 # Warum funktioniert die Regression besser beim Datensatz "women" als bei den
-# Kursteilnehmerdaten? HINT: Lesen Sie die Hilfe-Beschreibung von women! 
+# Kursteilnehmerdaten? HINT: Lesen Sie die Hilfe-Beschreibung von women!
+
+# Überlegung: Die Datensätze unterscheiden sich: Women: Subjects = 28 (nur Frauen);
+# Kurs: Subjects 37 (Frauen und Männer) -> Mehr Varianz?   
