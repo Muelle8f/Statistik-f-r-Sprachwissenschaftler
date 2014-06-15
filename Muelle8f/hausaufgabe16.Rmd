@@ -58,6 +58,85 @@ ggplot(diamonds,aes(x=carat,y=price,color=color)) + geom_point(alpha=0.3)
 ggplot(diamonds,aes(x=carat,y=price,color=color)) + geom_point() + facet_wrap(~color)
 ```
 
+# Analyse
+Fragestellung: 
+Was bestimmt den Preis eines Diamanten? Wie ist der Einfluss von Carat und Farbe? Welche Variable erklärt den Preis besser? Gibt es eine Interaktion?
+
+Abhängige Variable: Price, in US dollars 
+
+Unabhängige Variablen: Carat, Color
+
+
+Zunächst einmal möchte ich mir die verschiedenen Variablen in einem Plot anschauen:
+
+Preis und Carat:
+```{r}
+ggplot(diamonds, aes(x=carat, y=price))+geom_point()
+```
+
+Aus der Abbildung kann man schließen, dass Carat den Preis beeinflusst. 
+
+
+
+Preis und Farbe: 
+```{r}
+ggplot(data=diamonds) + geom_violin(aes(x=color, y=price, color=color, fill = color),alpha=0.3)
+```
+
+Die Farbe scheint den Preis weniger zu beeinflussen. 
+
+
+
+# Lineare Regression 
+Ich möchte wissen, wie groß der Einfluss der beiden unabhängigen Variablen auf den Preis ist bzw. wie viel Varianz erklärt werden kann. 
+
+Price ~ Carat:
+
+```{r}
+summary(lm(price~carat,data=diamonds))
+```
+
+R^2 ist 0.85. Carat erklärt also etwa 85% der Varianz des Preises. 
+
+
+
+Price ~ Color:  
+
+Die Variable "Color"  ist eine kategoriale Variable. Um eine Regression durchführen zu können, muss man diese Variable also erst einmal durch den Befehl as.numeric transformieren. 
+
+```{r}
+diamonds$color.numeric <- as.numeric(diamonds$color)
+summary(lm(price~color.numeric,data=diamonds))
+```
+
+R^2 ist 0.03. Color erklärt also wenig Varianz in Bezug auf den Preis. 
+
+
+
+Aus der lineraren Regression geht hervor, dass Carat einen recht großen Einfluss auf den Preis zu haben scheint, wohingegen die Farbe den Preis weniger zu beeinflussen scheint. 
+
+
+
+Die Frage ist, ob es eine Interaktion zwischen Carat und Farbe gibt:
+
+```{r}
+summary(lm(price~carat*color.numeric,data=diamonds))
+```
+
+R^2 ist hier 0.86. Die beiden Variablen zusammen erklären also nur geringfügig mehr Varianz als Carat allein. Color ist hier nicht signifikant, Carat und die Interaktion sind hochsignifikant.   
+
+
+# ANOVA: 
+
+Wir wollen die Einflüsse von Carat und Farbe (in Hinblick auf die Interaktion) auf den Preis betrachten: 
+
+```{r}
+summary(aov(price~carat*color, data = diamonds))
+```
+
+Carat hat einen größeren F-Wert also Color. Carat, Color und die Interaktion sind hochsignifikant. Mich wundert, dass Color hier als hochsignifikant erscheint. Denn die lineare Regression ergab einen nicht-signifikanten Wert. 
+Jedoch gibt es eine Interaktion und in jedem Fall hat Carat einen signifikanten Einfluss auf den Preis. 
+
 # Noch eine Überlegung
 Haben Sie dabei explorativ oder konfirmativ gearbeitet? Was hat das für eine Auswirkung auf die Interpretation der Ergebnisse?
 
