@@ -60,7 +60,7 @@ ggplot(diamonds,aes(x=carat,y=price,color=color)) + geom_point() + facet_wrap(~c
 
 # Analyse
 Fragestellung: 
-Was bestimmt den Preis eines Diamanten? Wie ist der Einfluss von Carat und Farbe? Welche Variable erklärt den Preis besser? Gibt es eine Interaktion?
+Was bestimmt den Preis eines Diamanten: Wie ist der Einfluss von Carat und Farbe? Welche Variable erklärt den Preis besser? Gibt es eine Interaktion?
 
 Abhängige Variable: Price, in US dollars 
 
@@ -134,11 +134,15 @@ Wir wollen die Einflüsse von Carat und Farbe (in Hinblick auf die Interaktion) 
 summary(aov(price~carat*color, data = diamonds))
 ```
 
-Carat hat einen größeren F-Wert also Color. Carat, Color und die Interaktion sind hochsignifikant. Mich wundert, dass Color hier als hochsignifikant erscheint. Denn die lineare Regression ergab einen nicht-signifikanten Wert. 
+Carat hat einen größeren F-Wert also Color. Carat, Color und die Interaktion sind hochsignifikant. Mich wundert, dass Color hier als hochsignifikant erscheint. Dies hätte ich aufgrund der Ergebnisse der linearen Regression nicht erwartet. 
 Jedoch gibt es eine Interaktion und in jedem Fall hat Carat einen signifikanten Einfluss auf den Preis. 
 
 # Noch eine Überlegung
 Haben Sie dabei explorativ oder konfirmativ gearbeitet? Was hat das für eine Auswirkung auf die Interpretation der Ergebnisse?
+
+Antwort:
+
+Da ich wenig über die Zusammenhänge der vorliegenden Daten weiß und die Fragestellung damit recht offen war, habe ich explorativ gearbeitet. 
 
 # Lizenz
 Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz.
