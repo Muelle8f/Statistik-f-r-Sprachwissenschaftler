@@ -45,17 +45,21 @@ y = x1 + x2
 linreg <- data.frame(x1,x2,y)
 
 # Wir können y ~ x1 und y ~ x2 einzel plotten:
-# ggplot(linreg,aes(x=x1,y=y)) + geom_point() + geom_smooth(method="lm")
-# ggplot(linreg,aes(x=x2,y=y)) + geom_point() + geom_smooth(method="lm")
+ggplot(linreg,aes(x=x1,y=y)) + geom_point() + geom_smooth(method="lm")
+ggplot(linreg,aes(x=x2,y=y)) + geom_point() + geom_smooth(method="lm")
 
 # Die Linie passt sehr gut zu den Punkten, was wir hätten erwarten sollen, denn
 # wir haben y aus einfachen Summen von x1 und x2 berechnet. Wir berechnen
 # zunächst die lineare Regression für die einzelnen unabhängige Variablen.
 
-# CODE_HIER (x1)
+# Lineare Regression (x1):
+lmx1 <- lm(y ~ x1, data=linreg) 
+print(lmx1)
 
 
-# CODE_HIER (x2)
+# Lineare Regression (x2):
+lmx2 <- lm(y ~ x2, data=linreg)
+print(lmx2) 
 
 # Was haben Sie für Koeffizeinten bekommen? Wenn wir daran denken, dass x2 = 2*x1 ist, wissen wir, dass 
 # y = x1 + x2
@@ -65,7 +69,7 @@ linreg <- data.frame(x1,x2,y)
 # y = x1 + x2 
 #   = 0.5*x2 + x2 
 #   = 1.5*x2
-# Das sind doch due Regressionkoeffizienten! 
+# Das sind doch die Regressionkoeffizienten! 
 
 
 # Wie sieht es aus, wenn wir beide gleichzeitig aufnehmen? Machen wir zuerst eine Grafik:
@@ -84,32 +88,36 @@ print(model.summary)
 # passiert, wenn wir die Reihenfolge von x1 und x2 in lm() umstellen? Führen Sie
 # die passende Regression aus:
 
-# CODE_HIER
+model2 <- lm(y ~ x2 + x1, data=linreg)
+model2.summary <- summary(model2)
+print(model2.summary)
 
 # Bei linearen Regression müssen wir immer aufpassen, dass unsere Prediktoren
 # nicht zu stark miteinander korrelieren. Das könnten wir auch mit cor()
 # austesten. Hier sollten Sie schon Pearsons Korrelationkoeffizienten nennen
 # können, ohne folgenden Befehl auszuführen.
-# cor(linreg$x1,linreg$x2)
+cor(linreg$x1,linreg$x2)
 
 # Wir laden jetzt einen weiteren Datensatz als Beispiel: 
 # (Sie müssen den folgenden Befehl evtl. anpassen!)
-pyreg <- read.table("Data/pyreg.tab",header=TRUE) 
+pyreg <- read.table("pyreg.tab",header=TRUE) 
 
 # Wie linreg hat pyreg drei Spalten x1, x2, y
 # Plotten Sie die Punkte + Regressionslinie für y ~ x1 (wie oben).
 
-# CODE_HIER
+ggplot(pyreg,aes(x=x1,y=y)) + geom_point() + geom_smooth(method="lm")
 
 # Und das gleiche für y ~ x2. 
 
-# CODE_HIER
+ggplot(pyreg,aes(x=x2,y=y)) + geom_point() + geom_smooth(method="lm")
 
 # Berechnen Sie die zwei Regressionsmodelle für y ~ x1 und y ~ x2
 
-# CODE_HIER
+modelx1 <- lm(y ~ x1, data=pyreg)
+print(modelx1)
 
-# CODE_HIER
+modelx2 <- lm(y ~ x2, data=pyreg)
+print(modelx2)
 
 # Bevor Sie die Regression y ~ x1 + x2 berechnen, schauen Sie sich die
 # Korrelation (mit Konfidenzintervall!) zwischen x1 und x2 an:
