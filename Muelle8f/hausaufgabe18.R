@@ -114,10 +114,12 @@ ggplot(pyreg,aes(x=x2,y=y)) + geom_point() + geom_smooth(method="lm")
 # Berechnen Sie die zwei Regressionsmodelle für y ~ x1 und y ~ x2
 
 modelx1 <- lm(y ~ x1, data=pyreg)
-print(modelx1)
+modelx1.summary <- summary(modelx1)
+print(modelx1.summary)
 
 modelx2 <- lm(y ~ x2, data=pyreg)
-print(modelx2)
+modelx2.summary <- summary(modelx2)
+print(modelx2.summary)
 
 # Bevor Sie die Regression y ~ x1 + x2 berechnen, schauen Sie sich die
 # Korrelation (mit Konfidenzintervall!) zwischen x1 und x2 an:
@@ -135,10 +137,15 @@ print(modelx1x2.summary)
 # F-Werte an sowie auch die t-Werte für die einzelnen Prediktoren. Glauben Sie, 
 # dass y im linearen Verhältnis zu x1 und x2 steht? Machen Sie eine Grafik wie
 # oben für y ~ x1 + x2, **nachdem Sie sich eine Antwort überlegt haben**.
+# Überlegung: R^2 ist mir 0,96 sehr hoch. Dieses Modell kann also viel Varianz erklären,
+# d.h. x1 und x2 können 96% der Varianz erklären. 
+# Der F-Wert ist ebenfalls sehr hoch sowie der t-Wert für x2.
+# Anhand dieser Ergebnisse könnte man annehmen, dass y im linearen Verhältnis zu x1 und x2 steht.
 
 ggplot(pyreg,aes(x=x1,y=x2)) + geom_point(aes(size=y))
 
 # Glauben Sie jetzt, dass y im linearen Verhältnis zu x1 und x2 steht? Warum (nicht)?
+# Antwort: Nein, die Grafik zeigt eindeutig, dass y nicht im linearen Verhältnis zu x1 und x2 steht. 
 
 # Wie sieht mit Korrelationen aus? Berechnen Sie die Korrelation (sowohl Pearson
 # als auch Spearman) zwischen (y und x1) sowie auch zwischen (y und x2). 
@@ -150,13 +157,19 @@ cor(pyreg$y, pyreg$x2, method="pearson")
 cor(pyreg$y, pyreg$x2, method="spearman")
 
 # Welche Art von Korrelation macht am meisten Sinn bei diesen Daten?
-# Überlegung: Ich denke, es macht mehr Sinn die Pearson-Korrelation zu verwenden,
-# da es uns hier wahrscheinlich nicht darum geht, Rangkorrelationen zu betrachten.  
+# Überlegung: Unsere Daten sind intervallskaliert. Aus diesem Grund würde ich denken,
+# dass die Pearson-Korrelation mehr Sinn macht. Hätten wir ordinalskalierte Daten, wäre es sinnvoll,
+# die Spearman-Korrelation zu verwenden, da dabei auch die Rangordnung der Daten berücksichtigt wird. 
 
 # Korreliert y mit x1? y mit x2? x1 mit x2? Welche Schlussfolgerung über solche
 # Dreiecke von Variablen und ihren Korrelationen können Sie daraus ziehen?
+# Antwort: y korreliert mit x2, aber nicht mit x1. Die Prediktoren x1 und x2 korrelieren nur schwach miteinander. 
 
 # Welche Methode macht hier am meisten Sinn? Korrelationen oder Regression?
+# Generell würde ich sagen, dass dies von der Fragestellung abhängt. 
+# Denn mit einer Korrelation kann ich nur Aussagen über den Zusammenhang zweier Variablen treffen. 
+# Durch die Regression kann ich jedoch Aussagen über die abhängige Variable im Vergleich zur unabhängigen Variable machen.
+# D.h. ich kann auch Vorhersagen über das Wachstum der abhängigen Variable machen. 
 
 # Die Daten sind übrigens *nicht* linear. x1 besteht aus 10 zufälligen Zahlen
 # zwischen [1,10] und x2 besteht aus 10 zufälligen Zahlen zwischen [1,20]. 
@@ -167,4 +180,7 @@ cor(pyreg$y, pyreg$x2, method="spearman")
 
 # Was sagt das uns über (lineare) Regression? Ist es gut, dass das
 # Regressionmodell anscheinend so gut war?
+# Überlegung: Betrachtet man nur die Ergebnisse des Modells, kann dies offenbar schnell irreführend sein.
+# Aus diesem Grund sollte man die Daten wohl immer auch plotten, um eine weitere Bestätigung (oder eben auch nicht)
+# für seine Überlegungen zu bekommen. 
 
