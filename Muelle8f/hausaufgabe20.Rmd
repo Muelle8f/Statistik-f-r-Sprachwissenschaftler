@@ -47,7 +47,9 @@ Die Items in dieser Studie sind "Szenarien", also Situationen wo man mehr oder w
 
 Allerdings merken wir, dass `scenario` falsch kodiert ist, was wir korrigieren müssen:
 
+```{r}
 stimmen$scenario <- as.factor(stimmen$scenario)
+```
 
 ## Auswirkung der experimentellen Manipulation
 Um einen groben Eindruck zu bekommen, können wir schnell einen Boxplot machen:
