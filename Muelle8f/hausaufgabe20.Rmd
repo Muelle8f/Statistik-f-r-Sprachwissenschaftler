@@ -58,8 +58,7 @@ Um einen groben Eindruck zu bekommen, können wir schnell einen Boxplot machen:
 ggplot(stimmen) +
   geom_boxplot(aes(x=attitude,y=frequency)) + 
   # in Subplots nach Geschlecht aufteilen
-  ggplot(stimmen) +
-  geom_boxplot(aes(x=attitude,y=frequency)) +
+  facet_wrap(~gender)
 ```
 
 Wir merken dabei, dass:
